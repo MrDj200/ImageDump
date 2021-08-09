@@ -1,4 +1,4 @@
-using ImageDumpClean.Data;
+using ImageDumpNoAuth.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ImageDumpClean
+namespace ImageDumpNoAuth
 {
     public class Startup
     {

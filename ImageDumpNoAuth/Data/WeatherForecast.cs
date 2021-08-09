@@ -1,6 +1,6 @@
 using System;
 
-namespace ImageDumpClean.Data
+namespace ImageDumpNoAuth.Data
 {
     public class WeatherForecast
     {

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31521.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageDump", "ImageDump\ImageDump.csproj", "{C3D35C68-6A65-4B41-9D10-2BF0A12E64B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageDumpClean", "ImageDumpClean\ImageDumpClean.csproj", "{4FBF8411-6DE9-4705-9BF0-D782614EBE3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageDumpNoAuth", "ImageDumpNoAuth\ImageDumpNoAuth.csproj", "{27900703-1EF5-43EC-B961-F78E6655717C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{C3D35C68-6A65-4B41-9D10-2BF0A12E64B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3D35C68-6A65-4B41-9D10-2BF0A12E64B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3D35C68-6A65-4B41-9D10-2BF0A12E64B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4FBF8411-6DE9-4705-9BF0-D782614EBE3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FBF8411-6DE9-4705-9BF0-D782614EBE3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FBF8411-6DE9-4705-9BF0-D782614EBE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FBF8411-6DE9-4705-9BF0-D782614EBE3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27900703-1EF5-43EC-B961-F78E6655717C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27900703-1EF5-43EC-B961-F78E6655717C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27900703-1EF5-43EC-B961-F78E6655717C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27900703-1EF5-43EC-B961-F78E6655717C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

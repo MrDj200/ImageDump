@@ -3,12 +3,12 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:54975",
+      "applicationUrl": "http://localhost:38966",
       "sslPort": 0
     }
   },
   "profiles": {
-    "ImageDumpClean": {
+    "ImageDumpNoAuth": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
