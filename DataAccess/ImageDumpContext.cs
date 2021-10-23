@@ -14,7 +14,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=StoreDB;");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=StoreDB;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
