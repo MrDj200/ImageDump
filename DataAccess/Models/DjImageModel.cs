@@ -38,11 +38,11 @@ namespace DataAccess.Models
         public DjDumpUser Uploader { get; set; } // The user who uploaded this image, duh
 
         [Required]
-        public List<DjDumpUser> AllowedUsers { get; set; } // Users that have access to the image (At least the Uploader and Author if applicable)
+        public virtual ICollection<DjDumpUser> AllowedUsers { get; set; } // Users that have access to the image (At least the Uploader and Author if applicable)
 
-        public List<DjDumpGroup> AllowedGroups { get; set; } // Groups that have access to the image (Optional)
+        public virtual ICollection<DjDumpGroup> AllowedGroups { get; set; } // Groups that have access to the image (Optional)
 
-        public List<DjImageTag> Tags { get; set; } // Tags on this image
+        public virtual ICollection<DjImageTag> Tags { get; set; } // Tags on this image
 
         [Required]
         public bool NSFW { get; set; } // Whether or not image contains NSFW content
@@ -52,7 +52,7 @@ namespace DataAccess.Models
     {
         public DjVRCWorld World { get; set; } // World the image was taken in (Optional)
         public DjVRCUser Author { get; set; } // Player that took the picture (might be someone else who is uploading it) (Optional)
-        public List<DjVRCUser> Players { get; set; } // VRC Users visible in image (May be an empty list)
+        public virtual ICollection<DjVRCUser> Players { get; set; } // VRC Users visible in image (May be an empty list)
     }
 
     public class DjImageTag
@@ -75,7 +75,7 @@ namespace DataAccess.Models
         [Required]
         public long DiscordID { get; set; } // Discord ID. Required as Discord will be primary login method
 
-        public List<DjWebhook> Webhooks { get; set; } // List of webhooks added by the user
+        public virtual ICollection<DjWebhook> Webhooks { get; set; } // List of webhooks added by the user
 
         public bool Adult { get; set; } // Whether or not this user is allowed to see NSFW content
 
@@ -88,7 +88,7 @@ namespace DataAccess.Models
         public Guid ID { get; set; } // Generated UUID of the group
 
         [Required]
-        public List<DjDumpUser> Users { get; set; } // Users in this group
+        public virtual ICollection<DjDumpUser> Users { get; set; } // Users in this group
 
         [Required, MinLength(3), MaxLength(15)]
         public string Name { get; set; }
