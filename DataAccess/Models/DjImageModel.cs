@@ -69,6 +69,9 @@ namespace DataAccess.Models
         [Key, Required]
         public Guid ID { get; set; } // generated UUID of the user
 
+        [Required, MinLength(2), MaxLength(20)]
+        public string Name { get; set; }
+
         public DjVRCUser VRCIdentity { get; set; } // VRC profile of this user
 
         [Required]
