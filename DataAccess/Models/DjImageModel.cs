@@ -45,7 +45,7 @@ namespace DataAccess.Models
         public virtual ICollection<DjImageTag> Tags { get; set; } // Tags on this image
 
         [Required]
-        public bool NSFW { get; set; } // Whether or not image contains NSFW content
+        public bool NSFW { get; set; } = false; // Whether or not image contains NSFW content
     }
 
     public class DjVRCImage : DjImage // Image class specifically for vrc pics (future proofing)
@@ -77,9 +77,9 @@ namespace DataAccess.Models
 
         public virtual ICollection<DjWebhook> Webhooks { get; set; } // List of webhooks added by the user
 
-        public bool Adult { get; set; } // Whether or not this user is allowed to see NSFW content
+        public bool Adult { get; set; } = false; // Whether or not this user is allowed to see NSFW content
 
-        public bool ShowNSFW { get; set; } // Whether or not this user has enabled NSFW content
+        public bool ShowNSFW { get; set; } = false; // Whether or not this user has enabled NSFW content
     }
 
     public class DjDumpGroup // For Image access control
