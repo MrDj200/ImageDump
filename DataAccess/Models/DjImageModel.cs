@@ -64,6 +64,23 @@ namespace DataAccess.Models
         public string Name { get; set; }
     }
 
+    public class DjBan
+    {
+        [Key, Required]
+        public Guid ID { get; set; }
+
+        [Required]
+        public DjDumpUser User { get; set; }
+
+        [Required, MinLength(5), MaxLength(50)]
+        public string Reason { get; set; }
+
+        [Timestamp]
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime ExpiresAt { get; set; }
+    }
+
     public class DjDumpUser
     {
         [Key, Required]
@@ -82,6 +99,9 @@ namespace DataAccess.Models
         public bool Adult { get; set; } = false; // Whether or not this user is allowed to see NSFW content
 
         public bool ShowNSFW { get; set; } = false; // Whether or not this user has enabled NSFW content
+
+        [Required]
+        public bool IsBanned { get; set; } = false; // Whether or not this user is banned
     }
 
     public class DjDumpGroup // For Image access control

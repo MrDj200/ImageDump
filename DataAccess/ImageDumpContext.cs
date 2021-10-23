@@ -11,6 +11,7 @@ namespace DataAccess
         public DbSet<DjDumpGroup> DumpGroups { get; set; }
         public DbSet<DjVRCWorld> VRCWorlds { get; set; }
         public DbSet<DjVRCUser> VRCUsers { get; set; }
+        public DbSet<DjBan> UserBans { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
