@@ -1,6 +1,8 @@
 ﻿using DataAccess;
 using MediaConverter;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +18,18 @@ namespace Testing
         {
             using (var db = new ImageDumpContext())
             {
+                var shit = await db.Database.GetPendingMigrationsAsync();
+
+                if (shit.Any())
+                {
+                    Console.WriteLine($"Applying pending migrations...");
+                    var watch = new Stopwatch();
+                    watch.Start();
+                    await db.Database.MigrateAsync();
+                    Console.WriteLine($"Done!\nMigrating took {watch.ElapsedMilliseconds}ms");
+                    watch.Stop();
+                }
+
                 Console.WriteLine($"Can connect: {db.Database.CanConnect()}");
                 Console.WriteLine($"Amount of users: {db.DumpUsers.ToList()}");
             }
