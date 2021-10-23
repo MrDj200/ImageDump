@@ -88,7 +88,7 @@ namespace DataAccess.Models
         public DjVRCUsername Username { get; set; } // Current VRC Username
 
         [Required]
-        public List<DjVRCUsername> KnownUsernames { get; set; } // Know VRC Usernames, including current
+        public virtual ICollection<DjVRCUsername> KnownUsernames { get; set; } // Know VRC Usernames, including current
     }
 
     public class DjVRCUsername
