@@ -17,6 +17,14 @@ namespace DataAccess.Models
         UNKNOWN = -1
     }
 
+    public enum DjVisibility
+    {
+        PRIVATE,
+        SHARED_SERVERS,
+        PUBLIC,
+        UNKNOWN = -1
+    }
+
     internal class DjImageModel
     {
     }
@@ -87,21 +95,35 @@ namespace DataAccess.Models
         public Guid ID { get; set; } // generated UUID of the user
 
         [Required, MinLength(2), MaxLength(20)]
-        public string Name { get; set; }
+        public string Name { get; set; } // Name of the user
+
+        [Required]
+        public DjUserSettings Settings { get; set; } // Settings of the user
 
         public DjVRCUser VRCIdentity { get; set; } // VRC profile of this user
 
         [Required]
-        public long DiscordID { get; set; } // Discord ID. Required as Discord will be primary login method
+        public long DiscordID { get; set; } // Discord ID. Required as Discord will be primary login method        
 
-        public virtual ICollection<DjWebhook> Webhooks { get; set; } // List of webhooks added by the user
-
-        public bool Adult { get; set; } = false; // Whether or not this user is allowed to see NSFW content
-
-        public bool ShowNSFW { get; set; } = false; // Whether or not this user has enabled NSFW content
+        public bool Adult { get; set; } = false; // Whether or not this user is allowed to see NSFW content        
 
         [Required]
         public bool IsBanned { get; set; } = false; // Whether or not this user is banned
+    }
+
+    public class DjUserSettings
+    {
+        [Key, Required]
+        public int ID { get; set; } // The user settings ID
+
+        [Required]
+        public virtual ICollection<DjWebhook> Webhooks { get; set; } // List of webhooks added by the user
+
+        [Required]
+        public bool ShowNSFW { get; set; } = false; // Whether or not this user has enabled NSFW content
+
+        [Required, Range(-1, 2)]
+        public DjVisibility Visibility { get; set; } = DjVisibility.SHARED_SERVERS; // The visibility of the profile
     }
 
     public class DjDumpGroup // For Image access control
