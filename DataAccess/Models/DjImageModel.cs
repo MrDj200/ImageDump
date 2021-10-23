@@ -23,7 +23,6 @@ namespace DataAccess.Models
 
 
     // TODO: Add a way for users to upload their images to their own services (Amazon S3, FTP, google drive etc.)
-    // TODO: User defined tags for images
     // TODO: NSFW handling
 
     // Annotations: https://entityframeworkcore.com/model-data-annotations
@@ -43,6 +42,8 @@ namespace DataAccess.Models
         public List<DjDumpUser> AllowedUsers { get; set; } // Users that have access to the image (At least the Uploader and Author if applicable)
 
         public List<DjDumpGroup> AllowedGroups { get; set; } // Groups that have access to the image (Optional)
+
+        public List<DjImageTag> Tags { get; set; } // Tags on this image
     }
 
     public class DjVRCImage : DjImage // Image class specifically for vrc pics (future proofing)
@@ -50,6 +51,15 @@ namespace DataAccess.Models
         public DjVRCWorld World { get; set; } // World the image was taken in (Optional)
         public DjVRCUser Author { get; set; } // Player that took the picture (might be someone else who is uploading it) (Optional)
         public List<DjVRCUser> Players { get; set; } // VRC Users visible in image (May be an empty list)
+    }
+
+    public class DjImageTag
+    {
+        [Key, Required]
+        public Guid ID { get; set; }
+
+        [Required, MinLength(2), MaxLength(15)]
+        public string Name { get; set; }
     }
 
     public class DjDumpUser
@@ -73,6 +83,9 @@ namespace DataAccess.Models
 
         [Required]
         public List<DjDumpUser> Users { get; set; } // Users in this group
+
+        [Required, MinLength(3), MaxLength(15)]
+        public string Name { get; set; }
     }
 
     public class DjVRCWorld
@@ -112,7 +125,7 @@ namespace DataAccess.Models
         [Key, Required]
         public Guid ID { get; set; } // Generated UUID of webhook
 
-        [Required]
+        [Required, MinLength(3), MaxLength(20)]
         public string Name { get; set; } // Name of the Webhook. Used by the user to identify
 
         [Required]
