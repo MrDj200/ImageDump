@@ -65,6 +65,11 @@ namespace DataAccess.Models
 
         [Required, Range(-1, 2)]
         public DjVisibility Visibility { get; set; } = DjVisibility.PRIVATE; // Visibility of the image. Defaults to Private, just in case
+
+        [Required, Timestamp]
+        public DateTime TimeUploaded { get; set; } // Time of upload
+
+        public DateTime TimeTaken { get; set; } // Time the picture was taken (Optional)
     }
 
     public class DjVRCImage : DjImage // Image class specifically for vrc pics (future proofing)
