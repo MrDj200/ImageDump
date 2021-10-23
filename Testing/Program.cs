@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DataAccess.Models;
 using MediaConverter;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,9 +19,9 @@ namespace Testing
         {
             using (var db = new ImageDumpContext())
             {
-                var shit = await db.Database.GetPendingMigrationsAsync();
+                var pendingMigrations = await db.Database.GetPendingMigrationsAsync();
 
-                if (shit.Any())
+                if (pendingMigrations.Any())
                 {
                     Console.WriteLine($"Applying pending migrations...");
                     var watch = new Stopwatch();
@@ -31,7 +32,14 @@ namespace Testing
                 }
 
                 Console.WriteLine($"Can connect: {db.Database.CanConnect()}");
-                Console.WriteLine($"Amount of users: {db.DumpUsers.ToList()}");
+                Console.WriteLine($"Amount of users: {db.DumpUsers.ToList().Count}");
+
+                var usr = new DjDumpUser()
+                {
+                    DiscordID = 1
+                };
+                await db.DumpUsers.AddAsync(usr);
+                await db.SaveChangesAsync();
             }
         }
 

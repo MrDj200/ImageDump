@@ -69,10 +69,9 @@ namespace DataAccess.Models
         [Key, Required]
         public Guid ID { get; set; } // generated UUID of the user
 
-        [Required]
         public DjVRCUser VRCIdentity { get; set; } // VRC profile of this user
 
-        [Required, RegularExpression("[0-9]{18}")]
+        [Required]
         public long DiscordID { get; set; } // Discord ID. Required as Discord will be primary login method
 
         public virtual ICollection<DjWebhook> Webhooks { get; set; } // List of webhooks added by the user
