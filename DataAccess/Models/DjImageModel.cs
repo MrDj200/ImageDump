@@ -54,6 +54,9 @@ namespace DataAccess.Models
 
         [Required]
         public bool NSFW { get; set; } = false; // Whether or not image contains NSFW content
+
+        [Required, Range(-1, 2)]
+        public DjVisibility Visibility { get; set; } = DjVisibility.PRIVATE; // Visibility of the image. Defaults to Private, just in case
     }
 
     public class DjVRCImage : DjImage // Image class specifically for vrc pics (future proofing)
