@@ -23,7 +23,6 @@ namespace DataAccess.Models
 
 
     // TODO: Add a way for users to upload their images to their own services (Amazon S3, FTP, google drive etc.)
-    // TODO: NSFW handling
 
     // Annotations: https://entityframeworkcore.com/model-data-annotations
 
@@ -44,6 +43,9 @@ namespace DataAccess.Models
         public List<DjDumpGroup> AllowedGroups { get; set; } // Groups that have access to the image (Optional)
 
         public List<DjImageTag> Tags { get; set; } // Tags on this image
+
+        [Required]
+        public bool NSFW { get; set; } // Whether or not image contains NSFW content
     }
 
     public class DjVRCImage : DjImage // Image class specifically for vrc pics (future proofing)
@@ -74,6 +76,10 @@ namespace DataAccess.Models
         public long DiscordID { get; set; } // Discord ID. Required as Discord will be primary login method
 
         public List<DjWebhook> Webhooks { get; set; } // List of webhooks added by the user
+
+        public bool Adult { get; set; } // Whether or not this user is allowed to see NSFW content
+
+        public bool ShowNSFW { get; set; } // Whether or not this user has enabled NSFW content
     }
 
     public class DjDumpGroup // For Image access control
