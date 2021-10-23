@@ -28,6 +28,11 @@ namespace ImageDumpNoAuth
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            //services.AddAuthentication(options => { }).AddDiscord(options => 
+            //{
+            //    options.ClientId = Configuration["Discord:AppId"];
+            //    options.ClientSecret = Configuration["Discord:AppSecret"];
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,11 +51,14 @@ namespace ImageDumpNoAuth
 
             app.UseRouting();
 
+            //app.UseAuthentication();
+            //app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
-            });
+            });            
         }
     }
 }

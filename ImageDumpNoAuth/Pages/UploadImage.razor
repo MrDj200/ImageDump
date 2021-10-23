@@ -1,0 +1,74 @@
+﻿@page "/upload" 
+@using Microsoft.AspNetCore.Components.Forms
+@using System 
+@using System.IO
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@inject ILogger<UploadImage> Logger
+@inject IWebHostEnvironment Environment
+
+<h3>UploadImage Tests</h3>
+
+Selected @Count files!
+<InputFile OnChange="@LoadFiles" multiple accept="image/*"/>
+
+@if (isLoading)
+{
+    <p>Uploading...</p>
+}
+else
+{
+    <ul>
+        @foreach (var file in loadedFiles)
+        {
+            <li>
+                <ul>
+                    <li>Name: @file.Name</li>
+                    <li>Last modified: @file.LastModified.ToString()</li>
+                    <li>Size (bytes): @file.Size</li>
+                    <li>Content type: @file.ContentType</li>
+                </ul>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+
+    private int Count = 0;
+    private List<IBrowserFile> loadedFiles = new();
+    private long maxFileSize = 104857600; //100 MB
+    private int maxAllowedFiles = 10;
+    private bool isLoading;
+
+    protected override void OnInitialized()
+    {
+        Logger.LogDebug("reee");
+    }
+
+    private async void LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        Count = e.FileCount;
+        loadedFiles.Clear();
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+                loadedFiles.Add(file);
+                var trustedFileNameForFileStorage = Path.GetRandomFileName();
+                var path = Path.Combine(Environment.ContentRootPath, Environment.EnvironmentName, "unsafe_uploads", file.Name);
+            
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("File: {Filename} Error: {Error}", file.Name, ex.Message);
+            }
+        }
+
+        isLoading = false;
+    }
+}
