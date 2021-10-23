@@ -21,6 +21,11 @@ namespace DataAccess.Models
     {
     }
 
+
+    // TODO: Add a way for users to upload their images to their own services (Amazon S3, FTP, google drive etc.)
+    // TODO: User defined tags for images
+    // TODO: NSFW handling
+
     // Annotations: https://entityframeworkcore.com/model-data-annotations
 
     public class DjImage // Base Image Class
