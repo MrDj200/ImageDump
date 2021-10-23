@@ -25,6 +25,14 @@ namespace DataAccess.Models
         UNKNOWN = -1
     }
 
+    public enum DjUserRank
+    {
+        USER,
+        BETTER_USER,
+        HOST,
+        UNKNOWN = -1
+    }
+
     internal class DjImageModel
     {
     }
@@ -46,9 +54,9 @@ namespace DataAccess.Models
         public DjDumpUser Uploader { get; set; } // The user who uploaded this image, duh
 
         [Required]
-        public virtual ICollection<DjDumpUser> AllowedUsers { get; set; } // Users that have access to the image (At least the Uploader and Author if applicable)
+        public virtual ICollection<DjDumpUser> AllowedUsers { get; set; } // Users that have access to the image (At least the Uploader and Author if applicable) // Whitelist. Higher prio than this.Visibility
 
-        public virtual ICollection<DjDumpGroup> AllowedGroups { get; set; } // Groups that have access to the image (Optional)
+        public virtual ICollection<DjDumpGroup> AllowedGroups { get; set; } // Groups that have access to the image (Optional) // Whitelist. Higher prio than this.Visibility
 
         public virtual ICollection<DjImageTag> Tags { get; set; } // Tags on this image
 
@@ -96,6 +104,9 @@ namespace DataAccess.Models
     {
         [Key, Required]
         public Guid ID { get; set; } // generated UUID of the user
+
+        [Required]
+        public DjUserRank Rank { get; set; } = DjUserRank.USER; // User rank of the user
 
         [Required, MinLength(2), MaxLength(20)]
         public string Name { get; set; } // Name of the user
