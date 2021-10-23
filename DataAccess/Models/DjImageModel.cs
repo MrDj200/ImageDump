@@ -22,7 +22,7 @@ namespace DataAccess.Models
     }
 
 
-    // TODO: Add a way for users to upload their images to their own services (Amazon S3, FTP, google drive etc.)
+    // Maybe todo (waaay later) : Add a way for users to upload their images to their own services (Amazon S3, FTP, google drive etc.)
 
     // Annotations: https://entityframeworkcore.com/model-data-annotations
 
